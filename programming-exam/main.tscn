@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://sq5u8wqluvxl"]
+
+[ext_resource type="Script" uid="uid://cmwa8p7w1vk6j" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://dc3km63ht6p0d" path="res://player.gd" id="1_ig7tw"]
+
+[sub_resource type="Curve2D" id="Curve2D_0xm2m"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1039, 33, 0, 0, 0, 0, 1117, 542, 0, 0, 0, 0, 829, 31, 0, 0, 0, 0, 644, 50, 0, 0, 0, 0, 984, 527, 0, 0, 0, 0, 573, 65, 0, 0, 0, 0, 583, 528)
+}
+point_count = 7
+
+[node name="Main" type="Node"]
+script = ExtResource("1_0xm2m")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(92, 343)
+script = ExtResource("1_ig7tw")
+
+[node name="Polygon2D" type="Polygon2D" parent="Player"]
+position = Vector2(139, -25)
+scale = Vector2(0.552013, 0.43379)
+color = Color(1, 0.701961, 1, 1)
+antialiased = true
+polygon = PackedVector2Array(-306, 66.6667, -306.667, -10.6667, -108, 61.3333, -303.333, 135.333)
+uv = PackedVector2Array(-306, 66.6667, -306.667, -10.6667, -108, 61.3333, -303.333, 135.333)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
+position = Vector2(-23, -26)
+scale = Vector2(0.552013, 0.43379)
+polygon = PackedVector2Array(-6.55319, 134.565, -8.36474, -10.6667, 189.094, 60.7965)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_0xm2m")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(1050.76, 109.751)
+rotation = 1.41874
+progress = 77.6582
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

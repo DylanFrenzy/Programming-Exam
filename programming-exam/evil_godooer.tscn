@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2imoqts82xac"]
+
+[ext_resource type="Texture2D" uid="uid://bqgvstkflo65l" path="res://icon.svg" id="1_hovgm"]
+[ext_resource type="Script" uid="uid://utipa0j2oo7i" path="res://evil_godooer.gd" id="1_o777j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o777j"]
+albedo_texture = ExtResource("1_hovgm")
+
+[sub_resource type="SphereMesh" id="SphereMesh_h7nu6"]
+material = SubResource("StandardMaterial3D_o777j")
+radius = 9.89
+height = 19.543
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u3pkk"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_o777j")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource("SphereMesh_h7nu6")
+texture = ExtResource("1_hovgm")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="MeshInstance2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeshInstance2D/StaticBody2D"]
+shape = SubResource("CircleShape2D_u3pkk")
